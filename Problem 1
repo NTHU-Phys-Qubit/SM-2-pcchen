@@ -1,0 +1,65 @@
+import random
+
+def func(Ndice, sides):
+    gram = []
+    j = 0
+    i = 0
+    r = 0
+    k = 0
+    Sum = 0
+    s = 0.0
+    var = 0.0
+    
+    for i in range(sides):
+        gram.append(0)
+ 
+    while j < Ndice :
+        r = int(random.random()*sides)
+        k = r + 1
+        s += k
+        var += k**2
+        gram[r] = gram[r] + 1
+        j += 1
+
+    Sum = s
+    s = s/Ndice
+    var = var/Ndice
+    var = var - s**2
+    stand = var**0.5
+    Tstand = ((sides**2 - 1)/12)**0.5
+    
+   
+    print("-"*30)
+    print("number of dice : %d"%(Ndice))
+    print("number of sides : %d"%(sides))
+    print("numbers in each side 1~%d :"%(sides),gram) 
+    print("sum of %d numbers : "%(Ndice),Sum)
+  
+    
+    print(" ")
+    print("theoretical mean : ",(0.5*(sides+1)))
+    print("theoretical variation : ",((sides**2 - 1)/12))
+    print("theoretical standard deviation : ",Tstand)
+    print("mean = " ,s)
+    print("variance = " ,var)
+    print("standard deviation",stand)
+
+    print("error of mean (%) : ",(s-(0.5*(sides+1)))*100/(0.5*(sides+1)))
+    print("error of standard deviation (%) : ",(stand-Tstand)*100/Tstand)
+    
+
+    print("-"*30)        
+
+
+#2.(a) Two dice, each with ten sides. 
+func(2, 10)
+#2.(b) Ten dice, each with twenty sides.
+func(10,20)
+#3.
+func(10,2)
+func(100,2)
+func(1000,2)
+func(10000,2)
+# The width of the distribution does not increase or decrease with increasing numbers of dice.
+# The width of the distribution becomes more and more closer to the theoretical value of variance and standard deviation with increasing number of dice.
+# My result agree with theory.  
